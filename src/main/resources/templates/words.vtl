@@ -1,0 +1,15 @@
+<h1>Dictionary Creator</h1>
+
+<form action="/words" method="post">
+  <div class="form-group">
+    <label for="word">
+    <input type="text" name="word" id="word">
+  </div>
+  <button type="submit" class="btn">Add word</button>
+</form>
+
+<h3>Words</h3>
+
+#foreach($word in $words)
+  <h4><a href="words/$word.getId()">$word.getWord()</a></h4>
+#end
