@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class DefinitionTest {
+public class WordTest {
 
   @Rule
   public ClearRule clearRule = new ClearRule();
@@ -37,13 +37,13 @@ public class DefinitionTest {
   @Test
   public void getId_returnsCorrectId_true() {
     Word testWord = new Word("Opulent");
-    assertTrue(Word.all().size == testWord.getId());
+    assertTrue(Word.all().size() == testWord.getId());
   }
 
   @Test
   public void find_returnsWordWithSameId() {
     Word testWord = new Word("Salicious");
-    assertEquals(Word.find(testCategory.getId()), testCategory);
+    assertEquals(Word.find(testWord.getId()), testWord);
   }
 
   @Test
