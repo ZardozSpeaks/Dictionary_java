@@ -8,7 +8,7 @@ public class Word {
   private int mId;
   private ArrayList<Definition> mDefinitions;
 
-  public Word(word) {
+  public Word(String word) {
     mWord = word;
     instances.add(this);
     mId = instances.size();
@@ -43,8 +43,8 @@ public class Word {
     }
   }
 
-  public static void clear {
+  public static void clear() {
     instances.clear();
   }
-  
+
 }
