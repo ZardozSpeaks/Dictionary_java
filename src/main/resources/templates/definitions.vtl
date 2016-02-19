@@ -1,7 +1,26 @@
-<h3>Add a new task:</h3>
+<div class="heading">
+  <h1> $word.getWord() </h1>
+</div>
 
-<form action="/tasks" method="post">
-  <label for="text">Your Definition</label>
-  <textarea type="text" rows="5" columns="40 "name="text" id="text">
-  <button type="submit" class="btn btn-default">Add Task</button>
+<div class="list-field">
+  <h3>All Definitions</h3>
+</div>
+<ul>
+#foreach ($definition in $definitions)
+<li>$definition.getText()</li>
+#end
+</ul>
+
+<div class="list-field">
+  <h3>Add a New Definition:</h3>
+</div>
+
+<form action="/definitions" method="post">
+  <input id="wordId" name="wordId" type="hidden" value="$word.getId()">
+  <div class="form-group">
+    <textarea type="text" rows="5" columns="40 "name="text" id="text"></textarea>
+  </div>
+  <button type="submit" class="btn btn-default">Add Definition</button>
 </form>
+
+<a href="/words"><button class=".btn">view all words</button></a>

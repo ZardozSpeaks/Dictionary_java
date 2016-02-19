@@ -40,12 +40,39 @@ public class App {
       ArrayList<Definition> definitions = word.getDefinitions();
       model.put("word", word);
       model.put("definitions", definitions);
-      model.put("template", "templates/tasks.vtl");
+      model.put("template", "templates/definitions.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
   //DEFINITIONS LOGIC//
 
-    
+  get("/definitions", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Word word = Word.find(Integer.parseInt(request.params(":id")));
+      model.put("word", word);
+      model.put("definitions", Definition.all());
+      model.put("template", "templates/definitions.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+  post("/definitions", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Word word = Word.find(Integer.parseInt(request.queryParams("wordId")));
+    ArrayList<Definition> definitions = word.getDefinitions();
+
+    if (definitions == null) {
+      definitions = new ArrayList<Definition>();
+      request.session().attribute("definitions", definitions);
+    }
+
+    String text = request.queryParams("text");
+    Definition newDefinition = new Definition(text);
+    definitions.add(newDefinition);
+    model.put("definitions", definitions);
+    model.put("word", word);
+    model.put("template", "templates/definitions.vtl");
+    return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
   }
 }

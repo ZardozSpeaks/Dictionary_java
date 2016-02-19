@@ -1,15 +1,22 @@
-<h1>Dictionary Creator</h1>
-
-<form action="/words" method="post">
-  <div class="form-group">
-    <label for="word">
-    <input type="text" name="word" id="word">
-  </div>
-  <button type="submit" class="btn">Add word</button>
-</form>
-
+<div class="jumbotron">
+  <h1>Dictionary Creator</h1>
+  <h2>Add a word then click the word to define it</h2>
+</div>
+<div>
+  <form action="/words" method="post">
+    <input id="wordId" name="wordId" type="hidden" value="$word.getId()">
+    <div class="form-group">
+      <label for="word">
+      <input type="text" name="word" id="word">
+    </div>
+    <button type="submit" class="btn">Add word</button>
+  </form>
+</div>
+<div class="list-field">
 <h3>Words</h3>
-
+</div>
+<ul>
 #foreach($word in $words)
-  <h4><a href="words/$word.getId()">$word.getWord()</a></h4>
+  <li><a href="words/$word.getId()">$word.getWord()</a></li>
 #end
+<ul>
